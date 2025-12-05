@@ -1,0 +1,27 @@
+name: 自动发布文档
+
+on:
+  push:
+    branches:
+      - main  # 如果你的主分支叫 master，请改成 master
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: 安装 Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
+          
+      - name: 安装 MkDocs 和 主题
+        run: pip install mkdocs-material
+        
+      - name: 自动构建并发布
+        # 这步会自动把 docs 里的 md 转换成网页推送到 gh-pages 分支
+        run: mkdocs gh-deploy --force

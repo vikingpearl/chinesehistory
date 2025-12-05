@@ -1,0 +1,15 @@
+site_name: 解读资治通鉴
+site_url: https://vikngpearl.github.io/chinesehistory/
+repo_url: https://github.com/vikngpearl/chinesehistory
+edit_uri: edit/main/docs/
+
+theme:
+  name: material  # 使用最美观的 Material 主题
+  language: zh    # 设置语言为中文
+  features:
+    - navigation.expand # 默认展开导航
+    - navigation.top    # 返回顶部按钮
+
+# 这一行至关重要：不要手动写 nav，让它自动根据文件夹生成！
+# plugins: 
+#   - search
