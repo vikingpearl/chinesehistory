@@ -1,19 +1,27 @@
 ---
 layout: default
-title: 我的文档库
+title: 文档索引
 ---
 
-<h1>文档列表</h1>
-<p>以下是仓库内所有的文档：</p>
+<div class="main-content">
+  <h1>📄 我的文档列表</h1>
+  <p>点击下方链接直接查看（注意：如果是 Jekyll 方案，且文件没有头部配置，点击后可能显示为源码）：</p>
 
-<ul>
-  {% for page in site.pages %}
-    {% if page.path contains '.md' and page.title != "我的文档库" %}
-      <li>
-        <a href="{{ page.url | relative_url }}">
-          {{ page.path | replace: ".md", "" }} 
-        </a>
-      </li>
-    {% endif %}
-  {% endfor %}
-</ul>
+  <ul>
+    {% for file in site.static_files %}
+      {% if file.extname == '.md' %}
+        <li>
+          <a href="{{ site.baseurl }}{{ file.path }}" target="_blank">
+            {{ file.name | replace: ".md", "" }}
+          </a>
+        </li>
+      {% endif %}
+    {% endfor %}
+    
+    {% for page in site.pages %}
+      {% if page.path contains '.md' and page.title != "文档索引" %}
+        <li><a href="{{ page.url | relative_url }}">{{ page.title | default: page.path }}</a></li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</div>
